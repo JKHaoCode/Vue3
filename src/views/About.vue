@@ -1,8 +1,9 @@
 <template>
   <div class="form-about">
+    <h1 id="h1" ref="headline">Headline</h1>
     <a-form :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" @submit="onSubmit">
       <a-form-item label="Activity name">
-        <a-input v-model:value="form.name" />
+        <a-input v-model:value="form.name" placeholder="please input" />
       </a-form-item>
       <a-form-item label="Activity zone">
         <a-select v-model:value="form.region" placeholder="please select your zone">
@@ -65,7 +66,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {
+  defineComponent,
+  // defineAsyncComponent,
+} from 'vue';
 import {
   Form, Input, Radio, Checkbox, Switch, DatePicker, Select, Button,
 } from 'ant-design-vue';
@@ -74,6 +78,16 @@ const { Item } = Form;
 const { Group } = Radio;
 const CheckGroup = Checkbox.Group;
 const { Option } = Select;
+
+// interface Data {
+//   [key: string]: unknown;
+// }
+//
+// interface SetupContext {
+//   attrs: Data;
+//   slots: Slots;
+//   emit: (event: string, ...args: unknown[]) => void;
+// }
 
 export default defineComponent({
   components: {
@@ -90,6 +104,63 @@ export default defineComponent({
     'a-radio-group': Group,
     'a-select-option': Option,
   },
+  // setup(props: , context: SetupContext) {
+  //   // const h1 = document.createElement('h1');
+  //   // console.log(h1);
+  //   console.log(props, context);
+  //   const headline = ref<HTMLElement|null>(null);
+  //   onMounted(() => {
+  //     console.log(headline.value);
+  //     // headline.value?.textContent ;
+  //     (headline.value as HTMLElement).innerText = '123123123';
+  //   });
+  //
+  //   onBeforeMount(() => {
+  //
+  //   });
+  //
+  //   // 返回是固定的 不能更改
+  //   return {
+  //     headline,
+  //     // form: {
+  //     //   name: '你的',
+  //     //   region: undefined,
+  //     //   date1: undefined,
+  //     //   delivery: false,
+  //     //   type: [],
+  //     //   resource: '',
+  //     //   desc: '',
+  //     // },
+  //   };
+  // },
+  beforeCreate(): void {
+    console.log('beforeCreate');
+  },
+
+  created(): void {
+    console.log('create');
+  },
+
+  beforeMount(): void {
+    console.log('beforeMount');
+  },
+
+  mounted(): void {
+    console.log('mounted');
+  },
+
+  beforeUpdate(): void {
+    console.log('beforeUpdate');
+  },
+
+  updated(): void {
+    console.log('Update');
+  },
+
+  beforeUnmount(): void {
+    console.log('beforeUnmount');
+  },
+
   data() {
     return {
       labelCol: { span: 4 },
@@ -107,7 +178,7 @@ export default defineComponent({
   },
   methods: {
     onSubmit() {
-      console.log(this.form.type);
+      console.log(this.form.name);
     },
   },
 });
