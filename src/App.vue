@@ -28,3 +28,13 @@
   }
 }
 </style>
+<!--对比vue2.x-->
+<!--beforeCreate -> 使用setup()-->
+<!--created -> 使用 setup()-->
+<!--beforeMount -> onBeforeMount-->
+<!--mounted -> onMounted-->
+<!--beforeUpdate -> onBeforeUpdate-->
+<!--updated -> onUpdated-->
+<!--beforeDestroy -> onBeforeUnmount-->
+<!--destroyed -> onUnmounted-->
+<!--errorCaptured -> onErrorCaptured-->
