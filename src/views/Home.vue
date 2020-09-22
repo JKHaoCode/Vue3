@@ -32,7 +32,7 @@ import { Button, message } from 'ant-design-vue';
 import { fetch } from '@/utils/request';
 import dayjs from 'dayjs';
 import { YoutubeOutlined, WechatOutlined } from '@ant-design/icons-vue';
-import { dataUser } from './data.d';
+import { dataUser } from './data.type';
 // import HelloWorld from '@/components/HelloWorld.vue';
 
 export default defineComponent({

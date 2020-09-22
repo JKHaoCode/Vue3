@@ -72,13 +72,12 @@ import {
   onMounted,
   ref,
   SetupContext,
-
 } from 'vue';
 import {
   Form, Input, Radio, Checkbox, Switch, DatePicker, Select, Button,
 } from 'ant-design-vue';
 import { fetch } from '@/utils/request';
-import { dataUser } from './data.d';
+import { userList } from './data.type';
 
 const { Item } = Form;
 const { Group } = Radio;
@@ -133,7 +132,7 @@ export default defineComponent({
   },
   beforeCreate(): void {
     console.log('beforeCreate');
-    fetch('/ncov/samples', {}).then((r: dataUser) => console.log(r));
+    fetch('/ncov/samples', {}).then((r: userList) => console.log(r));
   },
 
   created(): void {
