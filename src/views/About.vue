@@ -68,11 +68,17 @@
 <script lang="ts">
 import {
   defineComponent,
-  // defineAsyncComponent,
+  onBeforeMount,
+  onMounted,
+  ref,
+  SetupContext,
+
 } from 'vue';
 import {
   Form, Input, Radio, Checkbox, Switch, DatePicker, Select, Button,
 } from 'ant-design-vue';
+import { fetch } from '@/utils/request';
+import { dataUser } from './data.d';
 
 const { Item } = Form;
 const { Group } = Radio;
@@ -104,37 +110,30 @@ export default defineComponent({
     'a-radio-group': Group,
     'a-select-option': Option,
   },
-  // setup(props: , context: SetupContext) {
-  //   // const h1 = document.createElement('h1');
-  //   // console.log(h1);
-  //   console.log(props, context);
-  //   const headline = ref<HTMLElement|null>(null);
-  //   onMounted(() => {
-  //     console.log(headline.value);
-  //     // headline.value?.textContent ;
-  //     (headline.value as HTMLElement).innerText = '123123123';
-  //   });
-  //
-  //   onBeforeMount(() => {
-  //
-  //   });
-  //
-  //   // 返回是固定的 不能更改
-  //   return {
-  //     headline,
-  //     // form: {
-  //     //   name: '你的',
-  //     //   region: undefined,
-  //     //   date1: undefined,
-  //     //   delivery: false,
-  //     //   type: [],
-  //     //   resource: '',
-  //     //   desc: '',
-  //     // },
-  //   };
-  // },
+  setup(props, context: SetupContext) {
+    // const h1 = document.createElement('h1');
+    // console.log(h1);
+    console.log(this, props, context);
+    console.log(props, context);
+    const headline = ref<HTMLElement|null>(null);
+    onMounted(() => {
+      console.log(headline.value);
+      // headline.value?.textContent ;
+      (headline.value as HTMLElement).innerText = '123123123';
+    });
+
+    onBeforeMount(() => {
+      console.log(1111);
+    });
+
+    // 返回是固定的 不能更改
+    return {
+      headline,
+    };
+  },
   beforeCreate(): void {
     console.log('beforeCreate');
+    fetch('/ncov/samples', {}).then((r: dataUser) => console.log(r));
   },
 
   created(): void {

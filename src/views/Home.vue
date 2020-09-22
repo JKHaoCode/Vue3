@@ -10,6 +10,8 @@
     <div>
       <p>{{state.a}}</p>
       <p>{{state.b}}</p>
+      <p>{{timeNow.format("YYYY-MM-DD HH:mm:ss")}}</p>
+      <p>{{state.user.username}} --- {{state.user.age}}</p>
     </div>
 
   </div>
@@ -24,12 +26,16 @@ import {
   onUnmounted,
   onErrorCaptured,
   reactive,
+  defineComponent,
 } from 'vue';
-import { Button } from 'ant-design-vue';
+import { Button, message } from 'ant-design-vue';
+import { fetch } from '@/utils/request';
+import dayjs from 'dayjs';
 import { YoutubeOutlined, WechatOutlined } from '@ant-design/icons-vue';
+import { dataUser } from './data.d';
 // import HelloWorld from '@/components/HelloWorld.vue';
 
-export default {
+export default defineComponent({
   name: 'Home',
   components: {
     // HelloWorld,
@@ -38,21 +44,32 @@ export default {
     YoutubeOutlined,
     'a-button': Button,
   },
+  data() {
+    // console.log(dayjs());
+    message.success('成功了');
+    return {
+      timeNow: dayjs(),
+    };
+  },
   setup() {
     // console.log(1111);
     const state = reactive({
       a: '',
       b: 1,
       c: 3,
+      user: {},
     });
     onMounted(() => {
-      console.log('onMounted');
-      state.a = 'wode';
+      console.log(state);
     });
 
     onBeforeMount(() => {
-      console.log('onBeforeMount');
+      // console.log('onBeforeMount');
       state.b = 9;
+      fetch('https://yapi.hapyun.com/mock/287/api/v1/auth/user', { name: 'aaass' }).then((res: dataUser) => {
+        console.log(res);
+        state.user = res.data;
+      });
     });
 
     onUpdated(() => {
@@ -75,7 +92,7 @@ export default {
       state,
     };
   },
-};
+});
 </script>
 
 <style lang="less" scoped>

@@ -35,5 +35,8 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "http.proxy": "",
+  "http.proxyAuthorization": null,
+  "http.proxyStrictSSL": false
 }
