@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
 <!--    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
-    <a-button type="primary">我的</a-button>
+    <a-button type="primary" @click="changeButton">点击</a-button>
     <div class="icons-list">
       <YoutubeOutlined />
       <WechatOutlined />
@@ -59,6 +59,13 @@ export default defineComponent({
       c: 3,
       user: {},
     });
+
+    const changeButton = (e: MouseEvent) => {
+      e.preventDefault();
+      // console.log(e);
+      message.success('点击成功');
+    };
+
     onMounted(() => {
       console.log(state);
     });
@@ -90,6 +97,7 @@ export default defineComponent({
     return {
       aa: 5,
       state,
+      changeButton,
     };
   },
 });

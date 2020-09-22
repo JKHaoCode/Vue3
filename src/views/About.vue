@@ -71,7 +71,6 @@ import {
   onBeforeMount,
   onMounted,
   ref,
-  SetupContext,
 } from 'vue';
 import {
   Form, Input, Radio, Checkbox, Switch, DatePicker, Select, Button,
@@ -109,11 +108,11 @@ export default defineComponent({
     'a-radio-group': Group,
     'a-select-option': Option,
   },
-  setup(props, context: SetupContext) {
+  setup() {
     // const h1 = document.createElement('h1');
     // console.log(h1);
-    console.log(this, props, context);
-    console.log(props, context);
+    // console.log(this, props, context);
+    // console.log(props, context);
     const headline = ref<HTMLElement|null>(null);
     onMounted(() => {
       console.log(headline.value);

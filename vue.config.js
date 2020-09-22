@@ -17,11 +17,16 @@ module.exports = {
       },
     },
   },
-
-  // chainWebpack: (config) => {
-  //   const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
-  //   types.forEach((type) => addStyleResource(config.module.rule('stylus').oneOf(type)));
-  // },
+  // title: 'bbs',
+  // name: 'Vue3App',
+  chainWebpack: (config) => {
+    config.plugin('html').tap((args) => {
+      // console.log(args);
+      const params = args;
+      params[0].title = 'Vue3Appbbs';
+      return params;
+    });
+  },
 };
 
 // function addStyleResource(rule) {
