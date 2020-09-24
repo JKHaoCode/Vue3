@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-<!--    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
+   <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
     <a-button type="primary" @click="changeButton">点击</a-button>
     <div class="icons-list">
       <YoutubeOutlined />
@@ -32,27 +32,20 @@ import { Button, message } from 'ant-design-vue';
 import { fetch } from '@/utils/request';
 import dayjs from 'dayjs';
 import { YoutubeOutlined, WechatOutlined } from '@ant-design/icons-vue';
+import HelloWorld from '@/components/HelloWorld.vue';
 import { dataUser } from './data.type';
-// import HelloWorld from '@/components/HelloWorld.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
-    // HelloWorld,
+    HelloWorld,
     // Form,
     WechatOutlined,
     YoutubeOutlined,
     'a-button': Button,
   },
-  data() {
-    // console.log(dayjs());
-    message.success('成功了');
-    return {
-      timeNow: dayjs(),
-    };
-  },
-  setup() {
-    // console.log(1111);
+  setup(props) {
+    console.log(props);
     const state = reactive({
       a: '',
       b: 1,
@@ -64,6 +57,7 @@ export default defineComponent({
       e.preventDefault();
       // console.log(e);
       message.success('点击成功');
+      state.b += 1;
     };
 
     onMounted(() => {
@@ -98,6 +92,7 @@ export default defineComponent({
       aa: 5,
       state,
       changeButton,
+      timeNow: dayjs(),
     };
   },
 });
